@@ -10,10 +10,10 @@ export function getPostSlugs() {
 }
 
 export function getPostBySlug(slug: string) {
-  const realSlug = slug.replace(/\.md$/, "");
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
+  const realSlug = slug.replace(/\.md$/, ""); // スラッグから拡張子 .md を取り除く
+  const fullPath = join(postsDirectory, `${realSlug}.md`); // 投稿ディレクトリとスラッグを結合して完全なパスを作成
   const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+  const { data, content } = matter(fileContents); // matter関数を使ってメタデータとコンテンツを分離
 
   return { ...data, slug: realSlug, content } as Post;
 }
