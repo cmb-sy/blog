@@ -49,6 +49,7 @@ export function generateMetadata({ params }: Params): Metadata {
   };
 }
 
+// ビルド時に実行され、静的に生成するページのパスを決定する
 export async function generateStaticParams() {
   const posts = getAllPosts();
 
@@ -56,15 +57,3 @@ export async function generateStaticParams() {
     slug: post.slug,
   }));
 }
-
-// export async function generateStaticParams() {
-//   const res = await fetch("http://localhost:3000/api/posts/");
-
-//   const blogData = await res.json();
-
-//   console.log(blogData);
-
-//   return blogData.map((blog: TBlog) => ({
-//     id: blog.id,
-//   }));
-// }
